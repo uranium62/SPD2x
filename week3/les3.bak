@@ -65,27 +65,3 @@
                 (lookup-key (node-l t) k)]
                [(> k (node-key t))
                 (lookup-key (node-r t) k)])]))
-
-;; BST -> ListOfInteger
-;; present the keys in the binary search tree in descending order as a list
-(check-expect (tree-to-list false) empty)
-(check-expect (tree-to-list (make-node 4 "e" 
-                                       (make-node 1 "o" false false)
-                                       (make-node 7 "p" false false)))
-              (list 7 4 1))
-(check-expect (tree-to-list (make-node 6 "a"
-                                       (make-node 4 "b"
-                                                  (make-node 1 "v" false false)
-                                                  (make-node 5 "s" false false))
-                                       (make-node 9 "q" 
-                                                  false
-                                                  (make-node 10 "x" false false))))
-               (list 10 9 6 5 4 1))
-;(define (tree-to-list bt) empty)   ;stub
-
-(define (tree-to-list bt)
-  (cond [(false? bt) empty]
-        [else 
-         (append (tree-to-list (node-l bt))
-                 (list (node-key bt))
-                 (tree-to-list (node-r bt)))]))
